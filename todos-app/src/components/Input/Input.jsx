@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import './Input.scss'
 
-export default class Input extends Component {
+//Redux
+import { connect } from 'react-redux'
+import { createTodo } from '../../App/redux/actions/todoActions'
+
+class Input extends Component {
   constructor(props){
     super();
     this.state = {
@@ -34,8 +39,11 @@ export default class Input extends Component {
 
   handleKeyDown(e){
     if(e.nativeEvent.key === "Enter"){
-      //Call redux here  
-      alert(this.state.value);
+      let newTodo = {
+        title: this.state.value,
+        completed: false
+      }
+      this.props.createTodo(newTodo)
       this.clearInput();
     }
   }
@@ -46,3 +54,9 @@ export default class Input extends Component {
     })
   }
 }
+
+Input.propTypes = {
+  createTodo: PropTypes.func.isRequired
+}
+
+export default connect(null, { createTodo })(Input)

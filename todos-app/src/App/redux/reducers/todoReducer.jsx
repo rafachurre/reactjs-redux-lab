@@ -1,4 +1,4 @@
-import { POST_TODO, FETCH_TODOS } from '../actions/types'
+import { NEW_TODO, FETCH_TODOS } from '../actions/types'
 
 const initialState = {
     items: [],
@@ -12,8 +12,11 @@ export default function(state = initialState, action){
                 ...state,
                 items: action.payload
             };
-        case POST_TODO:
-            return null;
+        case NEW_TODO:
+            return {
+                ...state,
+                item: action.payload
+            };
         default:
             return state;
     }
