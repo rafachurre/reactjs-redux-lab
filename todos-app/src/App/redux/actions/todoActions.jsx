@@ -2,7 +2,7 @@ import { NEW_TODO, FETCH_TODOS } from './types'
 
 export function fetchTodos(){
     return function(dispatch){
-        fetch('https://jsonplaceholder.typicode.com/todos')
+        fetch('http://localhost:3001/todos')
         .then(res => res.json())
         .then(todos => dispatch({
             type: FETCH_TODOS,
@@ -13,7 +13,7 @@ export function fetchTodos(){
 
 export function createTodo(todo){
     return function(dispatch){
-        fetch('https://jsonplaceholder.typicode.com/todos',{
+        fetch('http://localhost:3001/todos',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
