@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.scss';
 //Components
-import Task from '../components/Task/Task'
-import Input from '../components/Input/Input'
+import TodoList from '../components/TodoList/TodoList'
+//Redux
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 class App extends Component {
   constructor(props){
@@ -19,15 +21,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <div className="container">
-          <Input type="text" placeholder="Introduce a new task"/>  
-          { this.state.tasks.map((task, index) => {
-              return <Task key={index} taskName={task.name}/>
-            })
-          }
+      <Provider store={store}>
+        <div className="app">
+          <TodoList/>
         </div>
-      </div>
+      </Provider>
     );
   }
 }
