@@ -5,13 +5,14 @@ export default class Task extends Component {
   constructor(props){
     super();
     this.state = {
-      taskName: props.taskName
+      task: props.task
     }
   }
   render() {
     return (
       <div className="task m-t-s m-b-s">
-        <h3>{this.state.taskName}</h3>
+        <h3>{this.state.task.title}</h3>
+        <label className={this.state.task.completed ? 'status success' : 'status error'}>status: {this.state.task.completed ? 'completed' : 'pending'}</label>
       </div>
     )
   }

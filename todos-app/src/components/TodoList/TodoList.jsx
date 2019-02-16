@@ -5,8 +5,9 @@ import Task from '../Task/Task'
 import Input from '../Input/Input'
 //Redux
 import { connect } from 'react-redux'
+import { fetchTodos } from '../../App/redux/actions/todoActions'
 
-export default class TodoList extends Component {
+class TodoList extends Component {
   constructor(props){
     super();
     this.state = {
@@ -19,15 +20,25 @@ export default class TodoList extends Component {
     }
   }
 
+  componentWillMount(){
+      this.props.fetchTodos();
+  }
+
   render() {
     return (
         <div className="container">
         <Input type="text" placeholder="Introduce a new task"/>  
-        { this.state.tasks.map((task, index) => {
-            return <Task key={index} taskName={task.name}/>
+        { this.props.todos.map((todo, index) => {
+            return <Task key={index} task={todo}/>
             })
         }
         </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+    todos: state.todos.items
+})
+
+export default connect(mapStateToProps, { fetchTodos })(TodoList)

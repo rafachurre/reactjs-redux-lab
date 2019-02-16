@@ -9,4 +9,14 @@
     &:hover{
         background-color: $secondary;
     }
+    .status{
+        font-size: 17px;
+        font-weight: 800;
+    }
+    .success{
+        color: $success;
+    }
+    .error{
+        color: $error;
+    }
 }
