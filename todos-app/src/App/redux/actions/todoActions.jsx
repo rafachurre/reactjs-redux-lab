@@ -21,7 +21,7 @@ export function createTodo(todo){
             body: JSON.stringify(todo)
         })
         .then(res => res.json())
-        .then(todos => dispatch({
+        .then(todo => dispatch({
             type: NEW_TODO,
             payload: todo
         }));

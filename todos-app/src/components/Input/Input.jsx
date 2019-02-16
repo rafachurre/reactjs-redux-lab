@@ -56,7 +56,9 @@ class Input extends Component {
 }
 
 Input.propTypes = {
-  createTodo: PropTypes.func.isRequired
+  createTodo: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
 }
 
 export default connect(null, { createTodo })(Input)

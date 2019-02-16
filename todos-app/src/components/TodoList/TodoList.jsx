@@ -23,9 +23,9 @@ class TodoList extends Component {
   render() {
     return (
         <div className="container">
-        <Input type="text" placeholder="Create a new task"/>  
-        { this.props.todos.map((todo, index) => {
-            return <Task key={index} task={todo}/>
+        <Input type="text" placeholder="Create a new task" nextTodoId={this.props.todos.length + 1}/>  
+        { this.props.todos.map(todo => {
+            return <Task key={todo.id} task={todo}/>
           })
         }
         </div>
