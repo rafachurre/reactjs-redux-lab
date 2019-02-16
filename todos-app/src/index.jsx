@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './index.scss';
+import App from './App/App';
 import * as serviceWorker from './serviceWorker';
+//Global styles
+import './resources/scss/typography.scss';
+import './resources/scss/containers.scss';
+import './resources/scss/margins.scss';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

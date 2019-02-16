@@ -1,0 +1,9 @@
+@import '../resources/scss/variables.scss';
+
+.app{
+  background-color: $bg-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+}

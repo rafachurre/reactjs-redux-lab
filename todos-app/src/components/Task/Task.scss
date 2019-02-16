@@ -1,0 +1,12 @@
+@import '../../resources/scss/variables.scss';
+
+.task{
+    cursor: pointer;
+    padding: 30px;
+    border: 1px solid $light;
+    border-radius: 5px;
+    background-color: $primary;
+    &:hover{
+        background-color: $secondary;
+    }
+}
