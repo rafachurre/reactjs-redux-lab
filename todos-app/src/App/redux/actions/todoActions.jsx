@@ -1,4 +1,4 @@
-import { NEW_TODO, FETCH_TODOS, DELETE_TODO } from './types'
+import { NEW_TODO, FETCH_TODOS, DELETE_TODO, COMPLETE_TODO } from './types'
 
 export function fetchTodos(){
     return function(dispatch){
@@ -35,9 +35,29 @@ export function deleteTodo(todo){
         })
         .then(res => res.json())
         .then(resData => {
-            console.log(todo)
             dispatch({
                 type: DELETE_TODO,
+                payload: todo
+            })
+        });
+    }
+}
+
+export function completeTodo(todo){
+    return function(dispatch){
+        fetch('http://localhost:3001/todos/'+todo.id,{
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                completed: true
+            })
+        })
+        .then(res => res.json())
+        .then(todo => {
+            dispatch({
+                type: COMPLETE_TODO,
                 payload: todo
             })
         });

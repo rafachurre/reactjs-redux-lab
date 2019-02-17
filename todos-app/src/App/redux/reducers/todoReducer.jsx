@@ -1,36 +1,38 @@
-import { NEW_TODO, FETCH_TODOS, DELETE_TODO } from '../actions/types'
+import { NEW_TODO, FETCH_TODOS, DELETE_TODO, COMPLETE_TODO } from '../actions/types'
 
 const initialState = {
     items: [],
-    newItem: {},
-    delItem: {}
+    item: {},
+    action: {}
 }
 
 export default function(state = initialState, action){
-    state = cleanState(state);
     switch(action.type){
         case FETCH_TODOS:
             return {
                 ...state,
+                action: action.type,
                 items: action.payload
             };
         case NEW_TODO:
             return {
                 ...state,
-                newItem: action.payload
+                action: action.type,
+                item: action.payload
             };
         case DELETE_TODO:
             return {
                 ...state,
-                delItem: action.payload
+                action: action.type,
+                item: action.payload
+            };
+        case COMPLETE_TODO:
+            return {
+                ...state,
+                action: action.type,
+                item: action.payload
             };
         default:
             return state;
-    }
-
-    function cleanState(state){
-        state.newItem = {};
-        state.delItem = {};
-        return state
     }
 }

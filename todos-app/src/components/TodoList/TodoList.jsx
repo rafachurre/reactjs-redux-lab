@@ -7,6 +7,8 @@ import Input from '../Input/Input'
 //Redux
 import { connect } from 'react-redux'
 import { fetchTodos } from '../../App/redux/actions/todoActions'
+import { NEW_TODO, FETCH_TODOS, DELETE_TODO, COMPLETE_TODO } from '../../App/redux/actions/types'
+
 
 class TodoList extends Component {
 
@@ -18,15 +20,22 @@ class TodoList extends Component {
     //TODO: How to know here which was the action??
     //      If we know the action we can evaluate nextProps.item and nextProps.action
     //      instead of creating a new object for each action (newTodo, deletedTodo, ...)
-    if(nextProps.newTodo && Object.keys(nextProps.newTodo).length){
-      this.props.todos.push(nextProps.newTodo);
+    if(nextProps.todo && nextProps.action === NEW_TODO){
+      this.props.todos.push(nextProps.todo);
     }
-    if(nextProps.deletedTodo && Object.keys(nextProps.deletedTodo).length){
+    if(nextProps.todo && nextProps.action === DELETE_TODO){
       for( var i = 0; i < this.props.todos.length; i++){ 
-        if ( this.props.todos[i].id === nextProps.deletedTodo.id) {
+        if ( this.props.todos[i].id === nextProps.todo.id) {
           this.props.todos.splice(i, 1); 
         }
-     }
+      }
+    }
+    if(nextProps.todo && nextProps.action === COMPLETE_TODO){
+      for( var i = 0; i < this.props.todos.length; i++){ 
+        if ( this.props.todos[i].id === nextProps.todo.id) {
+          this.props.todos.splice(i, 1, nextProps.todo);
+        }
+      }
     }
   }
 
@@ -46,13 +55,13 @@ class TodoList extends Component {
 TodoList.propTypes = {
   fetchTodos: PropTypes.func.isRequired,
   todos: PropTypes.array.isRequired,
-  newTodo: PropTypes.object
+  item: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
     todos: state.todos.items,
-    newTodo: state.todos.newItem,
-    deletedTodo: state.todos.delItem
+    todo: state.todos.item,
+    action: state.todos.action
 });
 
 export default connect(mapStateToProps, { fetchTodos })(TodoList)
