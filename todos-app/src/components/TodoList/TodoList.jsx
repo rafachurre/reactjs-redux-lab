@@ -15,16 +15,26 @@ class TodoList extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.newTodo){
-      this.props.todos.unshift(nextProps.newTodo);
+    //TODO: How to know here which was the action??
+    //      If we know the action we can evaluate nextProps.item and nextProps.action
+    //      instead of creating a new object for each action (newTodo, deletedTodo, ...)
+    if(nextProps.newTodo && Object.keys(nextProps.newTodo).length){
+      this.props.todos.push(nextProps.newTodo);
+    }
+    if(nextProps.deletedTodo && Object.keys(nextProps.deletedTodo).length){
+      for( var i = 0; i < this.props.todos.length; i++){ 
+        if ( this.props.todos[i].id === nextProps.deletedTodo.id) {
+          this.props.todos.splice(i, 1); 
+        }
+     }
     }
   }
 
   render() {
     return (
         <div className="container">
-        <Input type="text" placeholder="Create a new task" nextTodoId={this.props.todos.length + 1}/>  
-        { this.props.todos.map(todo => {
+        <Input type="text" placeholder="Create a new task"/>  
+        { this.props.todos.slice(0).reverse().map(todo => {
             return <Task key={todo.id} task={todo}/>
           })
         }
@@ -39,9 +49,10 @@ TodoList.propTypes = {
   newTodo: PropTypes.object
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     todos: state.todos.items,
-    newTodo: state.todos.item
+    newTodo: state.todos.newItem,
+    deletedTodo: state.todos.delItem
 });
 
 export default connect(mapStateToProps, { fetchTodos })(TodoList)

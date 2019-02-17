@@ -1,4 +1,4 @@
-import { NEW_TODO, FETCH_TODOS } from './types'
+import { NEW_TODO, FETCH_TODOS, DELETE_TODO } from './types'
 
 export function fetchTodos(){
     return function(dispatch){
@@ -25,5 +25,21 @@ export function createTodo(todo){
             type: NEW_TODO,
             payload: todo
         }));
+    }
+}
+
+export function deleteTodo(todo){
+    return function(dispatch){
+        fetch('http://localhost:3001/todos/'+todo.id,{
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(resData => {
+            console.log(todo)
+            dispatch({
+                type: DELETE_TODO,
+                payload: todo
+            })
+        });
     }
 }

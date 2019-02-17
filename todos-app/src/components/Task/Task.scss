@@ -1,7 +1,7 @@
 @import '../../App/resources/scss/variables.scss';
 
 .task{
-    cursor: pointer;
+    position: relative;
     padding: 30px;
     border: 1px solid $light;
     border-radius: 5px;
@@ -9,14 +9,53 @@
     &:hover{
         background-color: $secondary;
     }
+    &:hover>.btn.delete, &:hover>.btn.complete {
+        visibility: visible
+    }
+    .title{
+        display: block;
+        margin-right: 300px;
+    }
     .status{
         font-size: 17px;
         font-weight: 800;
+        &.success{
+            color: $success;
+        }
+        &.error{
+            color: $error;
+        }
     }
-    .success{
-        color: $success;
+    .btn.complete{
+        position: absolute;
+        right: 150px;
+        top: 35px;
+        display: inline-block;
+        cursor: pointer;
+        padding: 10px;
+        border: 1px solid $success;
+        border-radius: 5px;
+        background-color: transparent;
+        color: $white;
+        visibility: hidden;
+        &:hover{
+            background-color: $success;
+        }
     }
-    .error{
-        color: $error;
+    .btn.delete{
+        position: absolute;
+        right: 20px;
+        top: 35px;
+        display: inline-block;
+        cursor: pointer;
+        padding: 10px;
+        border: 1px solid $error;
+        border-radius: 5px;
+        background-color: transparent;
+        color: $white;
+        visibility: hidden;
+        &:hover{
+            background-color: $error;
+        }
     }
 }
