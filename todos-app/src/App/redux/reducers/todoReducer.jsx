@@ -2,8 +2,7 @@ import { NEW_TODO, FETCH_TODOS, DELETE_TODO, COMPLETE_TODO } from '../actions/ty
 
 const initialState = {
     items: [],
-    item: {},
-    action: {}
+    item: {}
 }
 
 export default function(state = initialState, action){
@@ -11,25 +10,25 @@ export default function(state = initialState, action){
         case FETCH_TODOS:
             return {
                 ...state,
-                action: action.type,
                 items: action.payload
             };
         case NEW_TODO:
+            state.items.push(action.payload);
             return {
-                ...state,
-                action: action.type,
-                item: action.payload
+                ...state    
             };
         case DELETE_TODO:
+            for( var i = 0; i < state.length; i++){ 
+                if ( state[i].id === action.payload.id) {
+                    state.splice(i, 1); 
+                }
+            }
             return {
-                ...state,
-                action: action.type,
-                item: action.payload
+                ...state
             };
         case COMPLETE_TODO:
             return {
                 ...state,
-                action: action.type,
                 item: action.payload
             };
         default:

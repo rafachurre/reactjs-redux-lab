@@ -7,7 +7,6 @@ import Input from '../Input/Input'
 //Redux
 import { connect } from 'react-redux'
 import { fetchTodos } from '../../App/redux/actions/todoActions'
-import { NEW_TODO, FETCH_TODOS, DELETE_TODO, COMPLETE_TODO } from '../../App/redux/actions/types'
 
 
 class TodoList extends Component {
@@ -16,36 +15,37 @@ class TodoList extends Component {
     this.props.fetchTodos();
   }
 
-  componentWillReceiveProps(nextProps){
-    //TODO: How to know here which was the action??
-    //      If we know the action we can evaluate nextProps.item and nextProps.action
-    //      instead of creating a new object for each action (newTodo, deletedTodo, ...)
-    if(nextProps.todo && nextProps.action === NEW_TODO){
-      this.props.todos.push(nextProps.todo);
-    }
-    if(nextProps.todo && nextProps.action === DELETE_TODO){
-      for( var i = 0; i < this.props.todos.length; i++){ 
-        if ( this.props.todos[i].id === nextProps.todo.id) {
-          this.props.todos.splice(i, 1); 
-        }
-      }
-    }
-    if(nextProps.todo && nextProps.action === COMPLETE_TODO){
-      for( var i = 0; i < this.props.todos.length; i++){ 
-        if ( this.props.todos[i].id === nextProps.todo.id) {
-          this.props.todos.splice(i, 1, nextProps.todo);
-        }
-      }
-    }
-  }
+  // componentWillReceiveProps(nextProps){
+  //   // TODO: How to know here which was the action??
+  //   //      If we know the action we can evaluate nextProps.item and nextProps.action
+  //   //      instead of creating a new object for each action (newTodo, deletedTodo, ...)
+  //   if(nextProps.todo && nextProps.action === NEW_TODO){
+  //     this.props.todos.push(nextProps.todo);
+  //   }
+  //   if(nextProps.todo && nextProps.action === DELETE_TODO){
+  //     for( var i = 0; i < this.props.todos.length; i++){ 
+  //       if ( this.props.todos[i].id === nextProps.todo.id) {
+  //         this.props.todos.splice(i, 1); 
+  //       }
+  //     }
+  //   }
+  //   if(nextProps.todo && nextProps.action === COMPLETE_TODO){
+  //     for( var i = 0; i < this.props.todos.length; i++){ 
+  //       if ( this.props.todos[i].id === nextProps.todo.id) {
+  //         this.props.todos.splice(i, 1, nextProps.todo);
+  //       }
+  //     }
+  //   }
+  // }
 
   render() {
     return (
         <div className="container">
         <Input type="text" placeholder="Create a new task"/>  
-        { this.props.todos.slice(0).reverse().map(todo => {
+        { this.props.todos ? this.props.todos.slice(0).reverse().map(todo => {
             return <Task key={todo.id} task={todo}/>
           })
+          :''
         }
         </div>
     );
@@ -60,8 +60,7 @@ TodoList.propTypes = {
 
 const mapStateToProps = (state) => ({
     todos: state.todos.items,
-    todo: state.todos.item,
-    action: state.todos.action
+    todo: state.todos.item
 });
 
 export default connect(mapStateToProps, { fetchTodos })(TodoList)
