@@ -39,16 +39,21 @@ class TodoList extends Component {
   // }
 
   render() {
-    return (
-        <div className="container">
-        <Input type="text" placeholder="Create a new task"/>  
-        { this.props.todos ? this.props.todos.slice(0).reverse().map(todo => {
-            return <Task key={todo.id} task={todo}/>
-          })
-          :''
-        }
-        </div>
-    );
+    if(this.props.todos){
+      return (
+          <div className="container">
+          <Input type="text" placeholder="Create a new task"/>  
+          { this.props.todos ? this.props.todos.slice(0).reverse().map(todo => {
+              return <Task key={todo.id} task={todo}/>
+            })
+            :''
+          }
+          </div>
+      )
+    }
+    else{
+      return (<div></div>)
+    }
   }
 }
 

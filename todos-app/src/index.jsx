@@ -4,9 +4,9 @@ import './index.scss';
 import App from './App/App';
 import * as serviceWorker from './serviceWorker';
 //Global styles
-import './App/resources/scss/typography.scss';
-import './App/resources/scss/containers.scss';
-import './App/resources/scss/margins.scss';
+import './resources/scss/global/typography.scss';
+import './resources/scss/component/containers.scss';
+import './resources/scss/global/margins.scss';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

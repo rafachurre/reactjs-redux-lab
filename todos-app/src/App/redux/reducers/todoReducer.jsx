@@ -5,32 +5,45 @@ const initialState = {
     item: {}
 }
 
-export default function(state = initialState, action){
-    switch(action.type){
+export default function (state = initialState, action) {
+    switch (action.type) {
         case FETCH_TODOS:
             return {
                 ...state,
                 items: action.payload
             };
         case NEW_TODO:
-            state.items.push(action.payload);
             return {
-                ...state    
+                ...state,
+                items: [
+                    ...state.items,
+                    action.payload
+                ]
             };
         case DELETE_TODO:
-            for( var i = 0; i < state.length; i++){ 
-                if ( state[i].id === action.payload.id) {
-                    state.splice(i, 1); 
+            const items2 = [];
+            state.items.forEach((todo, i) => {
+                if (todo.id !== action.payload.id) {
+                    items2.push(todo)
                 }
-            }
+            })
             return {
-                ...state
+                ...state,
+                items: items2
             };
         case COMPLETE_TODO:
             return {
                 ...state,
-                item: action.payload
-            };
+                items: state.items.map((todo, index) => {
+                    if (todo.id === action.payload.id) {
+                        // Copy the object before mutating
+                        return Object.assign({}, todo, {
+                            completed: true
+                        })
+                    }
+                    return todo
+                })
+            }
         default:
             return state;
     }
