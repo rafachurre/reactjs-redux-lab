@@ -32,6 +32,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     ```sh
     npm start
     ```
+    
+1.  Start a local json-server fake RESTfull API (running on port 3001: http://localhost:3001/todos)
+    ```sh
+    json-server --watch -p 3001 data/db.json
+    ```
+
+1.  Start the BE server to listen for WebSockets connections (running on port 8000: http://localhost:8000)
+    ```sh
+    nodemon src/socket-api/server.js
+    ```
 
 ## Noteworthy
  
