@@ -15,29 +15,6 @@ class TodoList extends Component {
     this.props.fetchTodos();
   }
 
-  // componentWillReceiveProps(nextProps){
-  //   // TODO: How to know here which was the action??
-  //   //      If we know the action we can evaluate nextProps.item and nextProps.action
-  //   //      instead of creating a new object for each action (newTodo, deletedTodo, ...)
-  //   if(nextProps.todo && nextProps.action === NEW_TODO){
-  //     this.props.todos.push(nextProps.todo);
-  //   }
-  //   if(nextProps.todo && nextProps.action === DELETE_TODO){
-  //     for( var i = 0; i < this.props.todos.length; i++){ 
-  //       if ( this.props.todos[i].id === nextProps.todo.id) {
-  //         this.props.todos.splice(i, 1); 
-  //       }
-  //     }
-  //   }
-  //   if(nextProps.todo && nextProps.action === COMPLETE_TODO){
-  //     for( var i = 0; i < this.props.todos.length; i++){ 
-  //       if ( this.props.todos[i].id === nextProps.todo.id) {
-  //         this.props.todos.splice(i, 1, nextProps.todo);
-  //       }
-  //     }
-  //   }
-  // }
-
   render() {
     if(this.props.todos){
       return (

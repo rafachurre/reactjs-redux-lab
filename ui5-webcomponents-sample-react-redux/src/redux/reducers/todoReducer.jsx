@@ -1,8 +1,7 @@
-import { NEW_TODO, FETCH_TODOS, DELETE_TODO, COMPLETE_TODO } from '../actions/types'
+import { NEW_TODO, FETCH_TODOS, DELETE_TODO, EDIT_TODO } from '../actions/types'
 
 const initialState = {
-    items: [],
-    item: {}
+    items: []
 }
 
 export default function (state = initialState, action) {
@@ -27,16 +26,12 @@ export default function (state = initialState, action) {
                     return todo.id !== action.payload.id
                 })
             };
-        case COMPLETE_TODO:
+        case EDIT_TODO:
             return {
                 ...state,
                 items: state.items.map((todo) => {
                     if (todo.id === action.payload.id) {
-                        // Copy the object before mutating
-                        return {
-                            ...todo, 
-                            completed:true
-                        }
+                        return action.payload
                     }
                     return todo
                 })

@@ -3,57 +3,27 @@
     {
       "id": 1,
       "title": "Entender Redux",
-      "completed": true
+      "completed": false
     },
     {
       "id": 2,
       "title": "Documentar Redux",
-      "completed": true
+      "completed": false
     },
     {
       "id": 3,
       "title": "Preguntarle a Alberto de nuevo",
-      "completed": true
+      "completed": false
     },
     {
       "id": 4,
       "title": "Corregir/actualizar Redux boilerplate",
-      "completed": true
+      "completed": false
     },
     {
       "id": 5,
       "title": "Modularizar React + Redux + json-server para instalar paquetes comunes en los diferentes projectos",
-      "completed": true
-    },
-    {
-      "title": "asdasd",
-      "completed": false,
-      "id": 6
-    },
-    {
-      "title": "asd",
-      "completed": true,
-      "id": 7
-    },
-    {
-      "title": "asd",
-      "completed": true,
-      "id": 8
-    },
-    {
-      "title": "as",
-      "completed": true,
-      "id": 9
-    },
-    {
-      "title": "d",
-      "completed": true,
-      "id": 10
-    },
-    {
-      "title": "as",
-      "completed": true,
-      "id": 11
+      "completed": false
     }
   ],
   "profile": {
