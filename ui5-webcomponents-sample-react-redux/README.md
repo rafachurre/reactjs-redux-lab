@@ -1,6 +1,9 @@
 ![UI5 logo](/docs/images/UI5_logo_wide.png)
 
-# UI5 Web Components React Sample Application
+# UI5 Web Components React Sample Application + Redux
+
+This is an extension of the official UI5 sample app - https://github.com/SAP/ui5-webcomponents-sample-react.git
+Adding Redux
 
 [React](https://reactjs.org/) sample application to demonstrate the usage of the [UI5 Web Components](https://github.com/SAP/ui5-webcomponents). It shows how to bind properties, to subscribe to events, using nested components and the bootstrapped React build.
  
